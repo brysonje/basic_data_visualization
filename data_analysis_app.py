@@ -27,6 +27,7 @@ if upload_csv_file:
     st.write("File has:", df.shape[1], "columns and:", df.shape[0], "rows")
     st.dataframe(data = df, width = 700, height = 150)
     st.write("2. Select the **amount** and the **variables** and for **analysis**")
+    df["time"] = np.arange(0, df.shape[0])
     amount_variables = ["one", "two", "tree", "four"]
     amount_variable = st.sidebar.radio("Select how much variables to analyze:", amount_variables)
     # selecting variables
@@ -57,6 +58,10 @@ if ready_analysis:
         with col2:
             st.write("**box** plot")
             st.pyplot(fig2)
+        data = df[["time", columns[0]]]
+        fig3, ax3 = plt.subplots(figsize = (8, 2))
+        sns.lineplot(data = data, x = "time", y = columns[0])
+        st.pyplot(fig3)
     if amount_variable == "two" and len(columns) == 2:
         fig, ax = plt.subplots(figsize = (3, 3))
         fig = sns.jointplot(x = df[columns[0]], y = df[columns[1]],
@@ -64,7 +69,7 @@ if ready_analysis:
         st.pyplot(fig)
     if amount_variable == "tree" and len(columns) == 3:
         data = df[[columns[0], columns[1], columns[2]]]
-        chart = alt.Chart(data).mark_circle(size = 60).encode(x = columns[0], y = columns[1],
+        chart = alt.Chart(data).mark_circle(size = 20).encode(x = columns[0], y = columns[1],
         color = columns[2], tooltip = [columns[0], columns[1], columns[2]]).interactive()
         st.altair_chart(chart, use_container_width = True)
         fig, ax = plt.subplots(figsize = (5, 5))
