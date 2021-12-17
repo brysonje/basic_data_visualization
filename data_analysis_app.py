@@ -67,13 +67,13 @@ if ready_analysis:
         sns.lineplot(data = data, x = "time", y = columns[0])
         st.pyplot(fig3)
     if amount_variable == "two" and len(columns) == 2:
-        st.write("3. Here below is a **scatter plot** for:", columns[0], columns[1])
+        st.write("3. Here below is a **scatter plot** for:", columns[0], "and", columns[1])
         fig, ax = plt.subplots(figsize = (3, 3))
         fig = sns.jointplot(x = df[columns[0]], y = df[columns[1]],
             kind = "scatter", height = 10, marginal_kws = dict(bins = 25, fill = True))
         st.pyplot(fig)
     if amount_variable == "tree" and len(columns) == 3:
-        st.write("3. Here below are a couple of **plots** for:", columns[0], columns[1], columns[2])
+        st.write("3. Here below are a couple of **plots** for:", columns[0], ",", columns[1], "and", columns[2])
         data = df[[columns[0], columns[1], columns[2]]]
         chart = alt.Chart(data).mark_circle(size = 20).encode(x = columns[0], y = columns[1],
         color = columns[2], tooltip = [columns[0], columns[1], columns[2]]).interactive()
@@ -82,7 +82,7 @@ if ready_analysis:
         fig = sns.pairplot(data, height = 4)
         st.pyplot(fig)
     if amount_variable == "four" and len(columns) == 4:
-        st.write("3. Here below a **correlation heatmap** and basic data **information** for:", columns[0], columns[1], columns[2], columns[3])
+        st.write("3. Here below a **correlation heatmap** and basic data **information** for:", columns[0], ",", columns[1], ",", columns[2], "and", columns[3])
         data = df[[columns[0], columns[1], columns[2], columns[3]]]
         fig, ax = plt.subplots(figsize = (5, 5))
         sns.heatmap(data.corr(), ax = ax, cmap = "YlGnBu", linewidths = 0.1)
