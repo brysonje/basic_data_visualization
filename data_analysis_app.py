@@ -50,7 +50,7 @@ if upload_csv_file:
 # Showing plots
 if ready_analysis:
     if amount_variable == "one" and len(columns) == 1:
-        st.write("3. Here below are tree graph for **visualization**:", columns)
+        st.write("3. Here below are tree graph for **visualization**:", columns[0])
         col1, col2 = st.columns(2)
         fig1, ax1 = plt.subplots(figsize = (6, 2.5))
         ax1.hist(df[columns], bins = 40)
