@@ -93,4 +93,4 @@ if ready_analysis:
         with col2:
             st.write("**basic** data information")
             st.dataframe(data = data.describe())
-            st.write("Please, **uncheck** the last box before change your options")
+    st.write("Please, **uncheck** the last box before change your options")
